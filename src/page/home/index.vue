@@ -1,35 +1,19 @@
 <template>
     <div>
-        <div>  搜索 </div>
-        <l-swipe  v-model="index" :lists="banners" >
+        <div> 搜索 </div>
+        <l-swipe v-model="index" :lists="banners">
 
         </l-swipe>
-        <!-- <l-tabs v-model="tabActivedIndex" :tabs="tabs">
-            <template>
-                <div> 面板1</div>
-                <div > 面板2</div>
-                <div> 面板3</div>
-            </template>
-        </l-tabs> -->
-        <!-- <lToast msg="图片未上传成功" /> -->
-        <!-- <l-swipe>
-            <lSwipeItem>
-                <div><img :src="banners[0]" /></div>
-            </lSwipeItem>
-            <lSwipeItem>
-                <div><img :src="banners[1]" /></div>
-
-            </lSwipeItem>
-            <lSwipeItem>
-                <div><img :src="banners[0]" /></div>
-            </lSwipeItem>
-        </l-swipe> -->
+        <lDialog v-model="show" title="系统提示" message="消息提示" type="confirm"  @handleConfirm="handleConfirm"/>
+        <button @click="show=true" >显示按钮 </button>
     </div>
 </template>
 
 <script>
 // import HelloWorld from '../components/HelloWorld.vue'
 import lSwipe from '../../components/swipe/index'
+import lDialog from '../../components/dialog/index.vue'
+
 // import lSwipeItem from '../components/swipe-item/index'
 // import lTabs from '../components/tabs/index'
 // import lToast from '../components/toast/index'
@@ -37,12 +21,13 @@ import lSwipe from '../../components/swipe/index'
 export default {
     name: 'App',
     components: {
-        lSwipe
+        lSwipe,lDialog
         // HelloWorld, lSwipe, lSwipeItem, lTabs,lToast
     },
     data() {
         return {
-            index:0,
+            show:true,
+            index: 0,
             tabActivedIndex: 2,
             tabs: ["标签1", "标签2", "标签3"],
             banners: [
@@ -53,14 +38,29 @@ export default {
             ]
         }
     },
-    mounted(){
-        setTimeout(()=>{
-            if(this.$toast){
-                 this.$toast('登录成功') 
+    mounted() {
+        setTimeout(() => {
+            if (this.$toast) {
+                this.$toast('登录成功')
             }
-                   
 
-        },1000)
+            // if (this.$dialog) {
+            //     console.log('this.$dialog',this.$dialog().alert)
+            //     this.$dialog().alert({
+            //         title: '标题',
+            //         message: '弹窗内容,确认信息无误么，那么将进行修改了。请你去人操作。',
+            //     }).then(() => {
+            //         // on close
+            //     });
+
+            // }
+
+        }, 1000)
+    },
+    methods:{
+         handleConfirm(){
+            this.show=false
+        },
     }
 }
 </script>
