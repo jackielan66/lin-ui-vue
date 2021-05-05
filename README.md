@@ -3,6 +3,7 @@
 ## 组件（下划线代表完成）
 - ~~Toast~~ 
 - Dialog
+
 ## todo
 git config  是什么
 git ssh是什么
@@ -10,4 +11,4 @@ git ssh是什么
 vue trasition-group
 pull-down 指令
 轮动图无缝滚动
-alert
+.sync 修饰符的使用

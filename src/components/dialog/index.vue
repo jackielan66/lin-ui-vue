@@ -1,6 +1,6 @@
 <template>
-    <transition name="fade" >
-        <div v-if="value">
+    <transition name="fade">
+        <div v-if="show">
             <div class="l-dialog" v-if="show" :class="mapClass">
                 <div class="l-dialog-title">
                     <strong>{{mapTitle}}</strong>
@@ -9,8 +9,8 @@
                     {{mapMessage}}
                 </div>
                 <div class="l-dialog-footer">
-                    <div v-if="type==='confirm'" class="btn" type="" @click.stop="handleCancel">取消</div>
-                    <div class="btn" type="primary" @click.stop="handleConfirm">确认</div>
+                    <div v-if="type==='confirm'" ref="cancel" class="btn" type="cancel" @click.stop="handleCancel">取消</div>
+                    <div class="btn" type="primary" ref="confirm" @click="handleConfirm">确认</div>
                 </div>
             </div>
             <section class="l-mask" @click.stop="handleCancel" />
@@ -22,29 +22,33 @@
 export default {
     name: 'l-dialog',
     props: {
-        value: {
-            type: [Boolean],
-            default: 0
-        },
+        value: false,
         title: '',
         message: '',
         type: '',
     },
     data() {
         return {
-
             show: true,
             options: {
 
             }
         }
     },
+    watch:{
+        value:{
+            handler(n,o){
+                this.show = n
+            },
+            immediate:true
+        }
+    },
     computed: {
         mapTitle() {
-            return this.title
+            return this.title || this.options.title
         },
         mapMessage() {
-            return this.message
+            return this.message || this.options.message
         },
         mapClass() {
             return this.show ? 'show' : ''
@@ -52,20 +56,33 @@ export default {
 
     },
     mounted() {
-        console.log(this.$slots, "====")
-        // this.$slots.tab
+    
     },
     methods: {
-        alert(opt = {}) {
-            // console.log(opt, "opt")
+        open(opt) {
             this.options = opt
-            this.show = true;
-            return new Promise((resovle, reject) => {
+            return new Promise((resolve, reject) => {
+                this.$nextTick(() => {
+                    this.$refs.confirm.addEventListener('click', () => {
+                        this.handleCancel()
+                        resolve()
+                    }, false);
+                    if (this.$refs.cancel) {
+                        this.$refs.cancel.addEventListener('click', () => {
+                            this.handleCancel()
+                            reject()
+                        }, false);
+                    }
+                })
 
             })
-            // this.$emit("input",curIndex)
-            // this.panelAnimateClass = curIndex > this.index ? 'shift-in' : 'shift-out'
-            // this.index = curIndex;
+        },
+        alert(opt = {}) {
+            return this.open(opt)
+        },
+        confirm(opt = {}){
+            // this.type = 'confirm';
+             return this.open(opt)
         },
         handleConfirm() {
             // console.log(`handleConfirm`)
@@ -73,6 +90,7 @@ export default {
 
         },
         handleCancel(event) {
+            this.show = false;
             this.$emit('input', false)
             this.$emit('handleCancel')
         },
@@ -113,7 +131,6 @@ export default {
     padding: 10px;
     border-radius: 10px;
     top: 40%;
-
 }
 .l-dialog-title {
     font-size: 18px;
@@ -139,18 +156,21 @@ export default {
 .btn[type="primary"] {
     color: salmon;
 }
-.fade-enter{
+.fade-enter {
+    /* 元素被插入之后的下一帧移除 插入完后 */
     opacity: 0;
 }
-.fade-enter-to {
-    transition: opacity 5000ms;;
+.fade-enter-active {
+    /* 整个过程 */
+    transition: opacity 500ms;
 }
-.fade-leave{
-    transition: opacity 5000ms;;
+.fade-leave {
+    /* opacity: 1; */
 }
-.fade-leave-active{
-        opacity: 0;
-
+.fade-leave-active {
+    /* 正在离开的过程 */
+    transition: opacity 500ms;
+    opacity: 0;
 }
 
 /* @keyframes fadeIn {

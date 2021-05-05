@@ -4,8 +4,9 @@
         <l-swipe v-model="index" :lists="banners">
 
         </l-swipe>
-        <lDialog v-model="show" title="系统提示" message="消息提示" type="confirm"  @handleConfirm="handleConfirm"/>
-        <button @click="show=true" >显示按钮 </button>
+        <!-- <lDialog v-model="show" title="系统提示" message="消息提示" type="confirm"  @handleConfirm="handleConfirm"/> -->
+        <button @click="handleShow" >显示按钮 </button>
+        <button @click="handleShowConfirm" >显示二次确认 </button>
     </div>
 </template>
 
@@ -43,23 +44,33 @@ export default {
             if (this.$toast) {
                 this.$toast('登录成功')
             }
-
-            // if (this.$dialog) {
-            //     console.log('this.$dialog',this.$dialog().alert)
-            //     this.$dialog().alert({
-            //         title: '标题',
-            //         message: '弹窗内容,确认信息无误么，那么将进行修改了。请你去人操作。',
-            //     }).then(() => {
-            //         // on close
-            //     });
-
-            // }
-
         }, 1000)
     },
     methods:{
+        handleShow(){
+            // console.log(  this.$dialog(),"=>")
+            Dialog.alert({
+                title:'确认弹窗',
+                message: '弹窗内容,确认信息无误么，那么将进行修改了。请你去人操作。',
+            }).then(res=>{
+                console.log("confirm  =>")
+            }).catch(err=>{
+
+            })
+        },
+        handleShowConfirm(){
+            Dialog.confirm({
+                title:'确认弹窗',
+                message: '弹窗内容,确认信息无误么，那么将进行修改了。请你去人操作。',
+            }).then(res=>{
+                console.log("二次确认confirm  =>")
+            }).catch(err=>{
+
+            })
+        },
          handleConfirm(){
-            this.show=false
+            this.show=false;
+            this.$toast('确认取消了')
         },
     }
 }
