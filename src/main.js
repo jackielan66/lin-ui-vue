@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import './init'
+import './components/init.js'
 
 
 

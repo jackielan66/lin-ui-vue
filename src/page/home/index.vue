@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-l-pull-down="onRefresh" >
         <div> 搜索 </div>
         <l-swipe v-model="index" :lists="banners">
 
@@ -47,6 +47,9 @@ export default {
         }, 1000)
     },
     methods:{
+        onRefresh(){
+            window.location.reload()
+        },
         handleShow(){
             // console.log(  this.$dialog(),"=>")
             Dialog.alert({

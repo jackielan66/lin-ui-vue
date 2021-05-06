@@ -1,7 +1,7 @@
 <template>
     <div class="swipe-wrap" @touchstart.stop="touchstart" @touchend.stop="touchend">
         <section class="swipe" :style="wrapStyle">
-            <div class="swipe-item" v-for="(item,idx) in lists" :key="idx" :style="getStyle(idx )">
+            <div class="swipe-item" :class="mapSwipeItem"   v-for="(item,idx) in lists" :key="idx" :style="getStyle(idx )">
                 <img :src="item" />
             </div>
             <slot></slot>
@@ -39,10 +39,22 @@ export default {
             width: 0,
             left: 0,
             width: 0,
-            timer: null
+            timer: null,
+            mapSwipeItem:""
+        }
+    },
+    watch:{
+        value:{
+            handler(n){
+                if(n===this.lists.length-1){
+                    // 如果是最后一个
+                }
+            },
+            immediate:true
         }
     },
     computed: {
+        
         dots() {
             // return [...this.lists]
         },
@@ -55,15 +67,25 @@ export default {
     mounted() {
         this.startInterval()
     },
+    destroyed(){
+        window.clearInterval(this.timer)
+    },
     methods: {
         getStyle(index) {
-            return {
+            let ext = {}
+            if(index === 0 && this.value === this.lists.length ){
+                ext = {
+                    position: 'relative'
+                }
+            }
+            return {...{
                 width: bodyClientWidth + 'px',
                 left: bodyClientWidth * index + 'px'
-            }
+            },...ext}
+           
         },
         touchstart() {
-            console.log("touchstart")
+            // console.log("touchstart")
             window.clearInterval(this.timer)
             this.timer=null
         },
@@ -71,7 +93,7 @@ export default {
             this.startInterval()
         },
         startInterval() {
-            console.log(this.duration,"====duration");
+            // console.log(this.duration,"====duration");
             if(this.timer){
                 window.clearInterval(this.timer)
             }

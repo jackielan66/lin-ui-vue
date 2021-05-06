@@ -34,6 +34,7 @@ ol,
 li {
     margin: 0;
     padding: 0;
+    /* transform: translate3d(); */
 }
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;

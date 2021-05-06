@@ -10,7 +10,7 @@
                 </div>
                 <div class="l-dialog-footer">
                     <div v-if="type==='confirm'" ref="cancel" class="btn" type="cancel" @click.stop="handleCancel">取消</div>
-                    <div class="btn" type="primary" ref="confirm" @click="handleConfirm">确认</div>
+                    <div class="btn" type="primary" ref="confirm" @click.stop="handleConfirm">确认</div>
                 </div>
             </div>
             <section class="l-mask" @click.stop="handleCancel" />
