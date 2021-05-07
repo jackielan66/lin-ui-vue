@@ -5,7 +5,7 @@
 - ~~~Dialog~~~
 - swipe
 - appnotification
-- ICON
+- icon
 
 ## todo
 安卓桥接web
