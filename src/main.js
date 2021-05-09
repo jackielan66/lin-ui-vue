@@ -3,7 +3,7 @@ import App from './App.vue'
 
 import './components/init.js'
 
-
+// import './icon-svg'
 
 
 import router from  './router/index'

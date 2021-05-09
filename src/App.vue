@@ -4,6 +4,7 @@
     </div>
 </template>
 <script>
+import './src/icon-svg/bingtutubiao.svg';
 export default {
     name: 'App',
     components: {
