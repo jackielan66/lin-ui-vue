@@ -1,14 +1,24 @@
 import Vue from 'vue'
 import Toast from './toast/index.vue';
 import Dialog from './dialog/index.vue'
+import Icon from './icon/index.vue'
+
+// requires and returns all modules that match
+const requireAll = requireContext => requireContext.keys().map(requireContext);
+
+// import all svg
+const req = require.context('../icon-svg', true, /\.svg$/);
+
+console.log(req,"req")
+
+requireAll(req);
 
 
-
-
+Vue.component('l-icon',Icon)
 
 const ToastConstructor = Vue.extend(Toast); // 扩展vue的属性
 const DialogConstructor = Vue.extend(Dialog);
-console.log("this")
+
 
 function  transform(el,x,y,z=0) {
     // el.style.transform = `translate3d(30px,30px,30px)`

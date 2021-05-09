@@ -1,6 +1,10 @@
 <template>
     <div v-l-pull-down="onRefresh" >
-        <div> 搜索 </div>
+        <div> 搜索
+            <!-- <svg><use xlink:href="#icon-bingtutubiao" /></svg> -->
+
+            <l-icon iconClass="bingtutubiao" />
+             </div>
         <l-swipe v-model="index" :lists="banners">
 
         </l-swipe>
@@ -18,6 +22,10 @@ import lDialog from '../../components/dialog/index.vue'
 // import lSwipeItem from '../components/swipe-item/index'
 // import lTabs from '../components/tabs/index'
 // import lToast from '../components/toast/index'
+// import '../../icon-svg/bingtutubiao.svg';
+
+
+
 
 export default {
     name: 'App',

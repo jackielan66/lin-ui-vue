@@ -5,7 +5,7 @@
 - ~~~Dialog~~~
 - swipe
 - appnotification
-- icon
+- ~~~icon~~~
 
 ## todo
 安卓桥接web
@@ -13,6 +13,7 @@ vue trasition-group
 pull-down 指令
 轮动图无缝滚动
 intersectionobserver 应用场景
+webpack require.contenx(); 一次性加载本地所有模块
 
 ## 实现vue-router的步骤
 1. 初始化参数
@@ -88,6 +89,7 @@ Git鼓励大量使用分支：
 删除分支：git branch -d <name>
 
 Git无法执行“快速合并”，是合并的两个分支都有新的提交 Fast forward模式
+快速合并后，删除分支后会丢掉分支信息
 
 处理冲突的时候
 Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，我们修改如下后保存：
