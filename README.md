@@ -52,3 +52,8 @@ git commit 提交更改，实际上就是把暂存区的所有内容提交到当
 场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD <file>，就回到了场景1，第二步按场景1操作。
 
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+# 远程库 git remote
+查看远程库信息 git remote -v 
+添加 git remote add origin <URL>
+删除 git remote rm origin
