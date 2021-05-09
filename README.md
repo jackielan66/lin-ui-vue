@@ -57,3 +57,8 @@ git commit 提交更改，实际上就是把暂存区的所有内容提交到当
 查看远程库信息 git remote -v 
 添加 git remote add origin <URL>
 删除 git remote rm origin
+第一次关联远程分支 git push -u origin master
+以后就使用 git push origin master
+
+# 分支关联
+HEAD 指向的当前分支
