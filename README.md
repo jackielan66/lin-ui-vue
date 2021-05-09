@@ -69,7 +69,7 @@ HEAD 指向的当前分支
 git branch dev
 git checkout dev
 ```
-查看当前分支 git branch 然后，用命令查看当前分支：
+查1当前分支 git branch 然后，用命令查看当前分支：
 
 小结
 Git鼓励大量使用分支：
