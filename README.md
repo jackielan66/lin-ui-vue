@@ -62,3 +62,11 @@ git commit 提交更改，实际上就是把暂存区的所有内容提交到当
 
 # 分支关联
 HEAD 指向的当前分支
+
+创建分支   git checkout -b dev
+`git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：`
+```
+git branch dev
+git checkout dev
+```
+查看当前分支 git branch 然后，用命令查看当前分支：
