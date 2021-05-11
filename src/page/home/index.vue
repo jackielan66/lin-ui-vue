@@ -1,8 +1,6 @@
 <template>
     <div v-l-pull-down="onRefresh" >
         <div> 搜索
-            <!-- <svg><use xlink:href="#icon-bingtutubiao" /></svg> -->
-
             <l-icon iconClass="bingtutubiao" />
              </div>
         <l-swipe v-model="index" :lists="banners">

@@ -9,7 +9,7 @@ const requireAll = requireContext => requireContext.keys().map(requireContext);
 // import all svg
 const req = require.context('../icon-svg', true, /\.svg$/);
 
-console.log(req,"req")
+// console.log(req,"req")
 
 requireAll(req);
 
@@ -35,13 +35,24 @@ Vue.directive('l-pull-down',{
         }
         let y = 0;
         let disY = 0;
-        let maxY = 60
+        let maxY = 60;
+        
+        const loadElement = document.createElement('div')
+        loadElement.style.textAlign = 'center'
+        loadElement.style.display = 'none';
+        loadElement.innerHTML = `下拉中`
+        target.insertBefore(loadElement,target.childNodes[0])
+        // document.body.childNodes
+
         const onTouchStart = (event)=>{
-            
             y = event.touches[0].pageY;
         }
         const onTouchMove = (event)=>{
             // console.log(event.touches[0].pageY)
+            if(loadElement.style.display==='none'){
+                loadElement.style.display='block';
+            }
+       
             disY = event.touches[0].pageY - y;
             disY = disY > maxY ? maxY :disY;
             transform(target,0,disY)
