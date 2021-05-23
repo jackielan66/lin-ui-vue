@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-         <router-view></router-view>
+        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -19,11 +19,16 @@ export default {
             ]
         }
     },
-    mounted(){
-        setTimeout(()=>{
-                    this.$toast('登录成功') 
-
-        },1000)
+    mounted() {
+        setTimeout(() => {
+            this.$toast('登录成功')
+            this.$notify({
+                type:'danger',
+                message: '通知内容',
+                duration:10000
+            }
+               );
+        }, 1000)
     }
 }
 </script>
@@ -42,7 +47,6 @@ li {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    margin-top: 60px;
 }
 img {
     height: 300px;

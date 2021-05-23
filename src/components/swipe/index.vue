@@ -102,7 +102,7 @@ export default {
                 if (result >= this.lists.length) {
                     result = 0
                 }
-                console.log(result, "this.value+1")
+                // console.log(result, "this.value+1")
                 this.$emit("input", result)
             }, this.duration)
         }
