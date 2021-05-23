@@ -39,7 +39,7 @@ export default {
         wrapStyle() {
             let style = {
                 transform: `translate3d(0, ${this.isShow ? 0 : -50}px, 0)`,
-                transition: `transform ${this.duration}ms`
+                transition: `transform 500ms`
             }
             return style
         },

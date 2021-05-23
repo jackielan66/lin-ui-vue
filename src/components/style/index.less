@@ -1,0 +1,16 @@
+@import url('./color.less');
+.l-border {
+    position: relative;
+    border-color: aqua;
+    &::before{
+        content: ' ';
+        position: absolute;
+        border:1px solid;
+        left: -50%;
+        height: -50%;
+        width: 200%;
+        height: 200%;
+        
+        transform: scale(0.5);
+    }
+}

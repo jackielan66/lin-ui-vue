@@ -1,19 +1,33 @@
 <template>
     <div v-l-pull-down="onRefresh" >
+        <l-line />
+        <l-button type="" block size="small"  plain @click="sumbit" >按钮</l-button>
+        <l-button type='danger' size="large"  @click="handleShow" >大按钮 </l-button>
+        <l-button @click="handleShowConfirm" size="mini" >显示二次确认 </l-button>
+        
+        <div class="l-border tezt" >
+
+        </div>
+
         <div> 搜索
             <l-icon iconClass="bingtutubiao" />
              </div>
+
+        <div class="high" >
+            high
+        </div>     
+        <section>
+            下面
+        </section>
         <l-swipe v-model="index" :lists="banners">
 
         </l-swipe>
         <!-- <lDialog v-model="show" title="系统提示" message="消息提示" type="confirm"  @handleConfirm="handleConfirm"/> -->
-        <button @click="handleShow" >显示按钮 </button>
-        <button @click="handleShowConfirm" >显示二次确认 </button>
+
     </div>
 </template>
 
 <script>
-// import HelloWorld from '../components/HelloWorld.vue'
 import lSwipe from '../../components/swipe/index'
 import lDialog from '../../components/dialog/index.vue'
 
@@ -81,6 +95,15 @@ export default {
             this.show=false;
             this.$toast('确认取消了')
         },
+        sumbit(event){
+            console.log(event,'提交按钮')
+                    this.$notify({
+                type:'danger',
+                message: '通知内容',
+                duration:10000
+            }
+               );
+        }
     }
 }
 </script>
@@ -100,7 +123,18 @@ li {
     color: #2c3e50;
     margin-top: 60px;
 }
+.tezt{
+    width: 100px;
+    height: 100px;
+}
 img {
     height: 300px;
+}
+.high{
+    width: 100px;
+    height: 100px;
+    color: #fff;
+    background-color: blue;
+    transform: scale(1.2);
 }
 </style>

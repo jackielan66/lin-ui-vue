@@ -1,13 +1,17 @@
 # l-ui
 
 ## 组件（下划线代表完成）
+- ~~Button~~
+- ~~Line~~
 - ~~Toast~~ 
 - ~~Dialog~~
+- ~~Notify~~
+- ~~Icon~~
 - swipe
-- Notify
-- ~~icon~~
 
 ## todo
+公用颜色样式抽离
+
 安卓桥接web
 pull-down 指令
 轮动图无缝滚动

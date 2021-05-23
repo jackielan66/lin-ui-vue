@@ -3,6 +3,10 @@ import Toast from './toast/index.vue';
 import Dialog from './dialog/index.vue'
 import Icon from './icon/index.vue'
 import Notify from './notify/index.vue'
+import Button from './button/index.vue'
+import Line from './line/index.vue'
+
+import './style/index.less'
 
 // todo 使用require.context() 批量引入组件
 
@@ -17,6 +21,8 @@ requireAll(req);
 
 
 Vue.component('l-icon', Icon)
+Vue.component('l-button',Button)
+Vue.component('l-line',Line);
 
 const ToastConstructor = Vue.extend(Toast); // 扩展vue的属性
 const DialogConstructor = Vue.extend(Dialog);

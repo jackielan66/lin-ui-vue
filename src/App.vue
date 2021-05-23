@@ -22,12 +22,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.$toast('登录成功')
-            this.$notify({
-                type:'danger',
-                message: '通知内容',
-                duration:10000
-            }
-               );
+    
         }, 1000)
     }
 }
