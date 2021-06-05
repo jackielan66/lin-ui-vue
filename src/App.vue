@@ -28,7 +28,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" >
 body,
 ul,
 ol,
@@ -42,8 +42,11 @@ li {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
+    background: #eee;
+    // min-height: 100vh;
 }
 img {
-    height: 300px;
+    // height: 300px;
 }
+
 </style>

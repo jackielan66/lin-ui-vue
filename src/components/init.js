@@ -5,8 +5,10 @@ import Icon from './icon/index.vue'
 import Notify from './notify/index.vue'
 import Button from './button/index.vue'
 import Line from './line/index.vue'
+import Cell from './cell/index.vue'
+import Image from './image/index.vue' 
 
-import './style/index.less'
+// import './style/index.less'
 
 // todo 使用require.context() 批量引入组件
 
@@ -23,6 +25,8 @@ requireAll(req);
 Vue.component('l-icon', Icon)
 Vue.component('l-button',Button)
 Vue.component('l-line',Line);
+Vue.component('l-cell',Cell)
+Vue.component('l-image',Image)
 
 const ToastConstructor = Vue.extend(Toast); // 扩展vue的属性
 const DialogConstructor = Vue.extend(Dialog);
@@ -173,4 +177,54 @@ Vue.prototype.$notify = function (params) {
     let element = notify.$el;
     document.body.appendChild(element);
 }
+
+Vue.directive('long-tap',{
+    bind:function (el,binding,vnode) {
+        console.log(el,'el')
+        console.log(binding,'binding')
+        console.log(vnode,'vnode');
+        let timer = null;
+        let startTime = '';
+        let endTime = '';
+        let LONG_TIME = binding.arg || 800;
+        const onTouchStart = function (params) {
+            startTime = Date.now();
+            timer = window.setTimeout(()=>{
+                binding.value()
+            },LONG_TIME)
+        };
+        const onTouchMove = function (params) {
+            window.clearTimeout(timer)
+        }
+        const onTouchEnd = function (params) {
+            endTime=Date.now();
+            if(endTime-startTime<LONG_TIME){
+                window.clearTimeout(timer)
+            }
+        }
+        el.addEventListener('touchstart',onTouchStart,false);
+        el.addEventListener('touchmove',onTouchMove,false)
+        el.addEventListener('touchend',onTouchEnd,false)
+        el._fnObj = {
+            onTouchStart,
+            onTouchMove,
+            onTouchEnd
+        }
+    },
+    inserted:function (params) {
+        
+    },
+    update:function (params) {
+        
+    },
+    componentUpdated:function (params) {
+        
+    },
+    unbind:function (el,binding) {
+        el.removeEventListener('touchstart',el._fnObj.onTouchStart);
+        el.removeEventListener('touchmove',el._fnObj.onTouchMove);
+        el.removeEventListener('touchend',el._fnObj.onTouchEnd);
+
+    }
+})
 

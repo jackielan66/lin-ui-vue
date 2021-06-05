@@ -1,16 +1,17 @@
 <template>
-  <svg :class="svgClass" aria-hidden="true">
-    <use :xlink:href="iconName"/>
-  </svg>
+  <div class="l-image" >
+      <img :src="src"  />
+  </div>
 </template>
 
 <script>
+
+// intersectionobserver 懒加载
 export default {
-  name: 'l-icon',
+  name: 'l-image',
   props: {
-    iconClass: {
+    src: {
       type: String,
-      required: true
     },
     className: {
       type: String,
@@ -32,12 +33,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.svg-icon {
-  font-size: 14px;
-  width: 1em; height: 1em;
-       vertical-align: -0.15em;
-       fill: currentColor;
-       overflow: hidden;
+<style scoped lang="less">
+img{
+    width: 100%;
+}
+.l-image {
+  
 }
 </style>
