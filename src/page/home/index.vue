@@ -1,7 +1,22 @@
 <template>
     <div>
-        <l-cell title="单元格" value="内容" @click="pushpage" is-link />
+        <l-cell title="单元格" value="内容" @click="show=true" is-link />
         <l-cell title="单元格2" value="内容2" @click="pushpage" is-link />
+
+        <l-popup position="top" v-model="show">
+            <div style="height:500px" >
+                内容
+                f sf asf f a
+
+                dsfas 
+                1212
+                <div>
+
+                    3213232
+                    section
+                </div>
+            </div>
+        </l-popup>
         <!-- <div>  23 </div> -->
         <!-- <l-line />
         <l-button type="" block size="small"  plain @click="sumbit" >按钮</l-button>
@@ -26,10 +41,21 @@
         </l-swipe> -->
         <!-- <lDialog v-model="show" title="系统提示" message="消息提示" type="confirm"  @handleConfirm="handleConfirm"/> -->
         <!-- <div>{{date}}</div> -->
-        <l-image 
-        width="100"
-         height="100"
-  src="https://img01.yzcdn.cn/vant/cat.jpeg" />
+
+        <!-- <l-row gutter="20" >
+            <l-col span="6">span: 8  absfasfsafsafasfsffdsafa </l-col>
+            <l-col span="6">span: 8</l-col>
+            <l-col span="6" offset="6" >span: 8</l-col>
+        </l-row>
+
+         <l-row type="flex" justify="space-around">
+            <l-col span="6">span: 8  absfasfsafsafasfsffdsafa </l-col>
+            <l-col span="6" >        <l-image width="100" height="100" src="https://img01.yzcdn.cn/vant/cat.jpeg" /></l-col>
+        </l-row> -->
+
+      
+
+
     </div>
 </template>
 
@@ -116,7 +142,7 @@ export default {
             );
         },
         onLongTap() {
-            console.log(this,"this 走长按")
+            console.log(this, "this 走长按")
         }
     }
 }

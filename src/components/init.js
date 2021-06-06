@@ -7,7 +7,8 @@ import Button from './button/index.vue'
 import Line from './line/index.vue'
 import Cell from './cell/index.vue'
 import Image from './image/index.vue' 
-
+import { Row,Col } from './layout/index'
+import Popup from './popup/index' 
 // import './style/index.less'
 
 // todo 使用require.context() 批量引入组件
@@ -27,6 +28,11 @@ Vue.component('l-button',Button)
 Vue.component('l-line',Line);
 Vue.component('l-cell',Cell)
 Vue.component('l-image',Image)
+Vue.component('l-row',Row)
+Vue.component('l-col',Col)
+Vue.component('l-popup',Popup)
+
+
 
 const ToastConstructor = Vue.extend(Toast); // 扩展vue的属性
 const DialogConstructor = Vue.extend(Dialog);

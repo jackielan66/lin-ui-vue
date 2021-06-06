@@ -2,16 +2,35 @@
 
 https://vant-contrib.gitee.io/vant/#/zh-CN/theme
 
+es module 与 common 的区别
+
+ tree-shaking 
+ 编译时加载
+
 ## 组件（下划线代表完成）
+### 基础组件
 - ~~Button~~
-- ~~Line~~
+- ~~Cell~~
+- ~~Icon~~
+- ~~Image~~
+- ~~Layout~~
+- Popup
+- Style
 - ~~Toast~~ 
+
+### 表单组件
+- Calendar
+- Cascader
+- Checkbox
+
+- ~~Line~~
+
 - ~~Dialog~~
 - ~~Notify~~
-- ~~Icon~~
-- Cell
+
+
 - swipe
-- Image
+
 - ~~长按指令~~
 - register-service-work
 - 使用 vue的 observer封装vuex
