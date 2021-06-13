@@ -3,20 +3,10 @@
         <l-cell title="单元格" value="内容" @click="show=true" is-link />
         <l-cell title="单元格2" value="内容2" @click="pushpage" is-link />
 
-        <l-popup position="top" v-model="show">
-            <div style="height:500px" >
-                内容
-                f sf asf f a
+        <l-calendar position="bottom"  round v-model="show" />
+           
 
-                dsfas 
-                1212
-                <div>
 
-                    3213232
-                    section
-                </div>
-            </div>
-        </l-popup>
         <!-- <div>  23 </div> -->
         <!-- <l-line />
         <l-button type="" block size="small"  plain @click="sumbit" >按钮</l-button>
@@ -67,8 +57,6 @@ import { formatDate } from '../../components/utils'
 // import lTabs from '../components/tabs/index'
 // import lToast from '../components/toast/index'
 // import '../../icon-svg/bingtutubiao.svg';
-
-
 
 
 export default {

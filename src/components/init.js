@@ -8,7 +8,8 @@ import Line from './line/index.vue'
 import Cell from './cell/index.vue'
 import Image from './image/index.vue' 
 import { Row,Col } from './layout/index'
-import Popup from './popup/index' 
+import Popup from './popup/index';
+import Calendar from './calendar/index' 
 // import './style/index.less'
 
 // todo 使用require.context() 批量引入组件
@@ -31,6 +32,7 @@ Vue.component('l-image',Image)
 Vue.component('l-row',Row)
 Vue.component('l-col',Col)
 Vue.component('l-popup',Popup)
+Vue.component('l-calendar',Calendar)
 
 
 

@@ -5,6 +5,10 @@ import './components/init.js'
 
 // import './icon-svg'
 
+// import Vant from 'vant';
+// import 'vant/lib/index.css';
+
+// Vue.use(Vant);
 
 import router from  './router/index'
 

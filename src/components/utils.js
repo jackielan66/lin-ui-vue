@@ -2,6 +2,9 @@ import Vue from 'vue'
 
 // Vue.filter()
 
+
+
+
 export const formatDate = (date,fmt="YYYY-MM-DD")=>{
     let result = '';
     let _d = new Date(date)
@@ -21,3 +24,4 @@ export const formatDate = (date,fmt="YYYY-MM-DD")=>{
     fmt = fmt.replace(/ss/,map.ss)
     return fmt;
 }
+
