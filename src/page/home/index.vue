@@ -3,9 +3,10 @@
         <l-cell title="单元格" value="内容" @click="show=true" is-link />
         <l-cell title="单元格2" value="内容2" @click="pushpage" is-link />
 
-        <l-calendar position="bottom"  round v-model="show" />
-           
+        <!-- <l-calendar position="bottom"  round v-model="show" /> -->
+        <l-checkbox v-model="show" disabled shape="">选中</l-checkbox>
 
+        <l-checkbox v-model="show" shape="">选中2</l-checkbox>
 
         <!-- <div>  23 </div> -->
         <!-- <l-line />
@@ -42,9 +43,6 @@
             <l-col span="6">span: 8  absfasfsafsafasfsffdsafa </l-col>
             <l-col span="6" >        <l-image width="100" height="100" src="https://img01.yzcdn.cn/vant/cat.jpeg" /></l-col>
         </l-row> -->
-
-      
-
 
     </div>
 </template>

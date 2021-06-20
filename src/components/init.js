@@ -10,6 +10,7 @@ import Image from './image/index.vue'
 import { Row,Col } from './layout/index'
 import Popup from './popup/index';
 import Calendar from './calendar/index' 
+import { CheckBox } from './checkbox/index'
 // import './style/index.less'
 
 // todo 使用require.context() 批量引入组件
@@ -33,6 +34,7 @@ Vue.component('l-row',Row)
 Vue.component('l-col',Col)
 Vue.component('l-popup',Popup)
 Vue.component('l-calendar',Calendar)
+Vue.component('l-checkbox',CheckBox)
 
 
 
