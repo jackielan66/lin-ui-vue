@@ -8,6 +8,15 @@
 
         <l-checkbox v-model="show" shape="">选中2</l-checkbox>
 
+        <l-form ref="form" >
+            <l-field v-model="value1" label="文本" disabled left-icon="smile-o" right-icon="warning-o" placeholder="请输入显示图标" />
+            <l-field v-model="value1"
+             :rules="[{ required: true, message: '密码不能为空' }]"
+             required type="password" label="密码" left-icon="smile-o" right-icon="warning-o" placeholder="请输入密码" />
+            <l-field label-width="100px" showWordLimit type="textarea" v-model="value1" label="文本" left-icon="smile-o" right-icon="warning-o" placeholder="请输入显示图标" />
+            <l-button block round @click="onSumbit" size="mini" >提交 </l-button>
+        </l-form>
+
         <!-- <div>  23 </div> -->
         <!-- <l-line />
         <l-button type="" block size="small"  plain @click="sumbit" >按钮</l-button>
@@ -75,7 +84,8 @@ export default {
                 'https://img01.yzcdn.cn/vant/apple-2.jpg',
                 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffmn.rrimg.com%2Ffmn060%2Fxiaozhan%2F20120305%2F2140%2Fp%2Fm2w595hq85lt_x_large_sFCt_7dd800004530121b.jpg&refer=http%3A%2F%2Ffmn.rrimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622637637&t=6dba20769f6c0935f7e7ee020c8f26c1'
             ],
-            date: ''
+            date: '',
+            value1: 'value1'
         }
     },
     mounted() {
@@ -87,6 +97,11 @@ export default {
         this.date = formatDate(Date.now())
     },
     methods: {
+        onSumbit(){
+            this.$refs.form.submit((err,values)=>{
+
+            }) 
+        },
         pushpage() {
             console.log('push page')
         },

@@ -17,7 +17,7 @@
 .l-border-bottom {
     position: relative;
     border-color: @gray-5;
-    &::before{
+    &::after{
         content: ' ';
         position: absolute;
         border-bottom:1px solid;
@@ -28,4 +28,8 @@
         transform: scale(0.5);
         z-index: 1;
     }
+}
+input,textarea {
+    border: none;
+    width: 100%;
 }

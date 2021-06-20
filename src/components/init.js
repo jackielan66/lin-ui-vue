@@ -11,6 +11,8 @@ import { Row,Col } from './layout/index'
 import Popup from './popup/index';
 import Calendar from './calendar/index' 
 import { CheckBox } from './checkbox/index'
+import Form from './form/index.vue'
+import Field from './field/index'
 // import './style/index.less'
 
 // todo 使用require.context() 批量引入组件
@@ -35,6 +37,8 @@ Vue.component('l-col',Col)
 Vue.component('l-popup',Popup)
 Vue.component('l-calendar',Calendar)
 Vue.component('l-checkbox',CheckBox)
+Vue.component('l-field',Field)
+Vue.component('l-form',Form)
 
 
 
