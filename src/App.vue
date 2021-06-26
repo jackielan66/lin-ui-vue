@@ -1,10 +1,10 @@
 <template>
-    <div id="app">
-        <router-view></router-view>
-    </div>
+  <div id="app">
+    <router-view />
+  </div>
 </template>
-<script>
 
+<script>
 export default {
     name: 'App',
     components: {
@@ -12,17 +12,16 @@ export default {
     data() {
         return {
             tabActivedIndex: 2,
-            tabs: ["标签1", "标签2", "标签3"],
+            tabs: ['标签1', '标签2', '标签3'],
             banners: [
                 'https://img01.yzcdn.cn/vant/apple-1.jpg',
-                'https://img01.yzcdn.cn/vant/apple-2.jpg',
+                'https://img01.yzcdn.cn/vant/apple-2.jpg'
             ]
         }
     },
     mounted() {
         setTimeout(() => {
             this.$toast('登录成功')
-    
         }, 1000)
     }
 }
@@ -33,6 +32,7 @@ body,
 ul,
 ol,
 li {
+
     margin: 0;
     padding: 0;
     /* transform: translate3d(); */

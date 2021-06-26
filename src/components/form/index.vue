@@ -1,12 +1,12 @@
 <template>
-    <form class="l-form" ref="form" :disabled="disabled" :class="[wrapClass]" :style="wrapStyle">
-        <slot></slot>
-    </form>
+  <form ref="form" class="l-form" :disabled="disabled" :class="[wrapClass]" :style="wrapStyle">
+    <slot />
+  </form>
 </template>
 
 <script>
 export default {
-    name: 'l-field',
+    name: 'LField',
     props: {
         value: {
             type: String,
@@ -91,7 +91,7 @@ export default {
             default() {
                 return 2000
             }
-        },
+        }
     },
     data() {
         return {
@@ -102,7 +102,7 @@ export default {
             moveDis: 0,
             initHeigth: 0,
             height: 0,
-            length: 0,
+            length: 0
         }
     },
     computed: {
@@ -113,14 +113,14 @@ export default {
                 } else {
                     return { height: this.height + 'px' }
                 }
-
             }
+            return ''
         },
         wrapStyle() {
-
+            return ''
         },
         wrapClass() {
-            let classList = [];
+            const classList = []
             if (this.required) {
                 classList.push('l-field--required')
             }
@@ -139,7 +139,7 @@ export default {
                 'large': 'l-cell--large',
                 'small': 'l-cell--small',
                 'mini': 'l-cell--mini',
-                'normal': 'l-cell--normal',
+                'normal': 'l-cell--normal'
             }
             return sizeClassMap[this.size] || 'l-cell--normal'
         },
@@ -164,13 +164,14 @@ export default {
             //     'danger': 'l-button--danger'
             // }
             // return bgClassMap[this.type] || 'l-button--primary'
-        },
+            return ''
+        }
 
     },
     watch: {
         value(n, o) {
             if (n) {
-                this.length = n.length;
+                this.length = n.length
             }
             console.log(n, 'n')
         }
@@ -182,7 +183,7 @@ export default {
         //     this.isShow = false
         // }, this.duration)
         this.$nextTick(() => {
-            let $textarea = this.$refs.textarea;
+            const $textarea = this.$refs.textarea
             // console.log(this.$refs, "== this.$refs ==")
             if ($textarea) {
                 const { height } = getComputedStyle($textarea)
@@ -192,24 +193,23 @@ export default {
     },
     methods: {
         submit() {
-            let $form =   this.$refs.form;
-            console.log($form ,'---form---')
-          
+            const $form = this.$refs.form
+            console.log($form, '---form---')
         },
         onInput(event) {
-            const val = event.target.value;
-            this.length = val.length;
-            console.log(event.target.scrollHeight, 'event');
-            this.height = 'inherit';
-            this.height = event.target.scrollHeight;
+            const val = event.target.value
+            this.length = val.length
+            console.log(event.target.scrollHeight, 'event')
+            this.height = 'inherit'
+            this.height = event.target.scrollHeight
             this.$nextTick(() => {
-                this.height = event.target.scrollHeight;
-            });
+                this.height = event.target.scrollHeight
+            })
         },
         onChage(event) {
             console.log(event.target.value, 'target')
             this.$emit('input', event.target.value)
-        },
+        }
 
     }
 

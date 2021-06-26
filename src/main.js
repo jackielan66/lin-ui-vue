@@ -10,11 +10,11 @@ import './components/init.js'
 
 // Vue.use(Vant);
 
-import router from  './router/index'
+import router from './router/index'
 
 Vue.config.productionTip = false
 
 new Vue({
     router,
-    render: h => h(App),
+    render: h => h(App)
 }).$mount('#app')
