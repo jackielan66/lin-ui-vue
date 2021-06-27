@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'LField',
+    name: 'LForm',
     props: {
         value: {
             type: String,
@@ -102,7 +102,8 @@ export default {
             moveDis: 0,
             initHeigth: 0,
             height: 0,
-            length: 0
+            length: 0,
+            errorCount: 0
         }
     },
     computed: {
@@ -192,9 +193,38 @@ export default {
         })
     },
     methods: {
+        getChildrenError() {
+            this.errorCount++
+        },
+        statError() {},
         submit() {
+            this.errorCount = 0
             const $form = this.$refs.form
-            console.log($form, '---form---')
+            this.$children.forEach(child => {
+                if (child.$options.name === 'LField') {
+                    child.getError(child.value)
+                }
+                // console.log(child, '---child---')
+                // console.log(child.$options.name, '---children---')
+            })
+            return new Promise((resolve, reject) => {
+                const error = this.errorCount || null
+                resolve(error, {})
+            })
+        },
+        validate() {
+            this.errorCount = 0
+            this.$children.forEach(child => {
+                if (child.$options.name === 'LField') {
+                    child.getError(child.value)
+                }
+                // console.log(child, '---child---')
+                // console.log(child.$options.name, '---children---')
+            })
+            return new Promise((resolve, reject) => {
+                const error = this.errorCount || null
+                resolve({}, error)
+            })
         },
         onInput(event) {
             const val = event.target.value

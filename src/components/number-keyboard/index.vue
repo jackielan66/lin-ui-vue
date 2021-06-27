@@ -1,38 +1,41 @@
 <template>
-  <div
-    class="l-field" :disabled="disabled"
-    :class="[
-      wrapClass,
-      bgClass,
-      plainClass,
-      blockClass,
-      sizeClass,
-      mapClass,loadingClass]" :style="wrapStyle"
-  >
-    <div class="l-field--label" :style="{width:labelWidth}">
-      {{ label }}
+  <transition name="slide-up">
+    <div
+      v-if="show" class="l-number-keyboard"
+      :disabled="disabled" :class="[
+        wrapClass,
+        bgClass,
+        plainClass,
+        blockClass,
+        sizeClass,
+        mapClass,loadingClass]"
+      :style="wrapStyle"
+    >
+      <div class="l-number-keyboard__body">
+        <div class="l-number-keyboard__keys">
+          <div v-for="(item,idx) of keyboards" :key="idx" class="l-number-keyboard__key">
+            <div class="l-key" @click="tapItem(item)">
+              {{ item }}
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="l-field--value">
-      <textarea
-        v-if="type==='textarea'" ref="textarea"
-        :style="textAreaStyle" :maxlength="maxlength"
-        :minlength="minlength" rows="1"
-        :type="type" :disabled="disabled"
-        :placeholder="placeholder" class="l-field__input"
-        @input="onInput" @scroll="scroll"
-        @change="onChage"
-      />
-      <input v-else :type="type" :maxlength="maxlength" :minlength="minlength" :disabled="disabled" :placeholder="placeholder" class="l-field__input" @input="onInput" @change="onChage">
-      <div v-if="errorMessage" class="l-field__error-message">{{ errorMessage }}</div>
-      <div v-if="showWordLimit" class="l-field__word-limit"> {{ length }} /{{ maxlength }}</div>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+
+const keynboardsOfNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'keyboard', 0, 'delete']
+
 export default {
-    name: 'LField',
+    name: 'LNumberKeyboard',
     props: {
+        show: {
+            type: [Boolean],
+            default: false
+        },
         value: {
             type: String,
             default() {
@@ -80,10 +83,7 @@ export default {
             type: [Boolean],
             default: false
         },
-        isLink: {
-            type: [Boolean],
-            default: false
-        },
+
         disabled: {
             type: [Boolean],
             default: false
@@ -134,6 +134,9 @@ export default {
         }
     },
     computed: {
+        keyboards() {
+            return keynboardsOfNum
+        },
         textAreaStyle() {
             if (this.height) {
                 if (isNaN(this.height)) {
@@ -202,23 +205,16 @@ export default {
         }
     },
     mounted() {
-        // console.log(this.$slots,"====")
-        // this.$slots.tab
-        // window.setTimeout(() => {
-        //     this.isShow = false
-        // }, this.duration)
-        this.$nextTick(() => {
-            const $textarea = this.$refs.textarea
-            // console.log(this.$refs, "== this.$refs ==")
-            if ($textarea) {
-                const { height } = getComputedStyle($textarea)
-                this.initHeigth = parseInt(height)
-            }
-        })
+
     },
     methods: {
-        scroll(event) {
+        tapItem(item) {
+            // console.log(item)
+            if (isNaN(item)) {
 
+            } else {
+                this.$emit('input', parseInt(item))
+            }
         },
         getError(value) {
             if (this.rules && this.rules.length > 0) {
@@ -266,95 +262,33 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" >
 @import url("../style/index.less");
-.l-field {
+.l-number-keyboard {
     box-sizing: border-box;
-    background-color: #fff;
-    position: relative;
-    // height: 44px;
-    display: flex;
-    // justify-content:space-between;
-    // align-items: center;
-    outline: none;
-    border: none;
-    font-size: 14px;
-    position: relative;
-    .l-field--label {
-        // min-width: 100px;
-    }
-    .l-field--value {
-        flex-grow: 1;
-    }
-    .l-field__input {
-        margin: 0;
-        padding: 0;
-        height: inherit;
-        &:focus {
-            border: none;
-            outline: none;
+    background-color: #eee;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transition: all 500ms;
+    .l-number-keyboard__body {
+        .l-number-keyboard__keys {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .l-number-keyboard__key {
+            width: calc(100% / 3);
+        }
+        .l-key {
+            text-align: center;
+            font-size: 30px;
+            padding: 10px 0;
+            background: #fff;
+            border-radius: 10px;
+            margin: 5px 5px;
+            &:active {
+                opacity: 0.6;
+            }
         }
     }
-    &::after {
-        content: " ";
-        width: 100%;
-        position: absolute;
-        bottom: 0px;
-        left: 1px;
-        border-bottom: 1px solid #ccc;
-        transform: scale(1, 0.5);
-    }
-    &.l-field--required::before {
-        content: "*";
-        color: @danger-color;
-        position: absolute;
-        // top: px;
-        left: 5px;
-    }
-    &.l-field--disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
-    }
-    .l-field__word-limit {
-        text-align: right;
-    }
-    .l-field__error-message {
-        color: @danger-color;
-        font-size: 12px;
-    }
-    &.l-button--plain.l-button--danger {
-        color: @danger-color;
-        border: 1px solid @danger-color;
-        border-width: 0;
-    }
-
-    // 大小
-    &.l-button--large {
-        height: 50px;
-        padding: 0 24px;
-        font-size: 16px;
-    }
-    &.l-cell--normal {
-        padding: 10px 16px;
-        font-size: 14px;
-    }
-    &.l-button--small {
-        height: 32px;
-        padding: 0 8px;
-        font-size: 12px;
-    }
-    &.l-button--mini {
-        height: 24px;
-        padding: 0 4px;
-        font-size: 10px;
-    }
-    // 大小end
-
-    &.l-button--block {
-        display: block;
-        width: 100%;
-    }
-
-    // &:active {
-    //     opacity: 0.7;
-    // }
 }
 </style>
